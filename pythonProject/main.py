@@ -64,22 +64,38 @@ R1.Player.hand
 
 from tkinter import *
 from tkinter import ttk
-from tkmacosx import Button  # used to change button colour
+from tkmacosx import Button
+from tkmacosx import CircleButton # used to change button colour
 from PIL import ImageTk, Image
 
 # Import tkinter library
 
 # Create an instance of Tkinter frame or window
 win = Tk()
+stscreen = Tk();
 
 # Set the geometry of tkinter frame
-win.geometry("400x300")
-
-
+stscreen.geometry("450x450")
+win.geometry("1200x900")
+win.config(background='#35654d')
+stscreen.config(background='#35654d')
+win.withdraw()
+stscreen.eval('tk::PlaceWindow . center')
 # establish commands
+def startgame():
+    if diffic != None:
+        stscreen.destroy()
+        win.deiconify()
+    else:
+        sel.grid()
+
+    #if diffuclty hasnt been pressed, dont start game
+
+
+
 def establishround():
     global R1
-    btn.config(text="Stop Game")
+    start.config(text="Stop")
     R1 = Round()
     R1.shuffle()
     R1.newRound()
@@ -116,8 +132,8 @@ def deal():
 
     image10 = Image.open(filestring1)  # put your own path here when running
     image20 = Image.open(filestring2)
-    resized_image10 = image10.resize((55, 80), Image.Resampling.LANCZOS)
-    resized_image20 = image20.resize((55, 80), Image.Resampling.LANCZOS)
+    resized_image10 = image10.resize((110, 160), Image.Resampling.LANCZOS)
+    resized_image20 = image20.resize((110, 160), Image.Resampling.LANCZOS)
     imageres10 = ImageTk.PhotoImage(resized_image10)
     imageres20 = ImageTk.PhotoImage(resized_image20)
     card_1.config(image=imageres10)
@@ -125,39 +141,86 @@ def deal():
     card_1.image=imageres10
     card_2.image=imageres20
 
+diffic = None
+def easy():
+    global diffic
+    diffic = "Easy"
+    difeasy.config(state="pressed")
+    difmedium.config(state="disabled")
+    difhard.config(state="disabled")
+def medium():
+    global diffic
+    diffic = "Medium"
+    difmedium.config(state="pressed")
+    difeasy.config(state="disabled")
+    difhard.config(state="disabled")
+def hard():
+    global diffic
+    diffic = "Hard"
+    difhard.config(state="pressed")
+    difmedium.config(state="disabled")
+    difeasy.config(state="disabled")
 
 # creating grid
 for i in range(0, 4):
     win.columnconfigure(i, weight=2)
 for i in range(0, 4):
     win.rowconfigure(i, weight=2)
-
+for i in range(0, 4):
+    stscreen.columnconfigure(i, weight=2)
+for i in range(0, 4):
+    stscreen.rowconfigure(i, weight=2)
 win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 # create card Images
 image1 = Image.open(
-    "/Users/emersondetering/Downloads/BlackJackPython/png/2_of_clubs.png")  # put your own path here when running
-image2 = Image.open("/Users/emersondetering/Downloads/BlackJackPython/png/7_of_clubs.png")
-resized_image1 = image1.resize((55, 80), Image.Resampling.LANCZOS)
-resized_image2 = image2.resize((55, 80), Image.Resampling.LANCZOS)
+    "/Users/emersondetering/Downloads/BlackJackPython/png/back.png")  # put your own path here when running
+image2 = Image.open("/Users/emersondetering/Downloads/BlackJackPython/png/back.png")
+resized_image1 = image1.resize((110, 160), Image.Resampling.LANCZOS)
+resized_image2 = image2.resize((110, 160), Image.Resampling.LANCZOS)
 imageres1 = ImageTk.PhotoImage(resized_image1)
 imageres2 = ImageTk.PhotoImage(resized_image2)
 # Create Cards
 card_1 = Label(win, image=imageres1)
 card_2 = Label(win, image=imageres2)
-# Create buttons
-btn = Button(win, text="Start Game", command=establishround)
-exit = Button(win, text="Exit Game", command=quit)
-deal = Button(win, text="Deal", command=deal)
+# Create buttons for main window
+start = CircleButton(win, text="Start", command=establishround,borderless=1)
+exit = CircleButton(win, text="Exit", command=quit,borderless=1)
+deal = Button(win, text="Deal", command=deal,borderless=1,height = 50)
 
-# place buttons
-exit.grid(column=0, row=0, sticky="EW")
-btn.grid(column=1, row=3, sticky="EW")
-deal.grid(column=3, row=0, sticky="EW")
+#create buttosn for start window
+start = CircleButton(stscreen, text="Start", command=startgame,borderless=1)
+difeasy = CircleButton(stscreen,text='Easy',command=easy,borderless=1)
+difmedium = CircleButton(stscreen,text='Medium',command=medium,borderless=1)
+difhard = CircleButton(stscreen,text='Hard',command=hard,borderless=1)
+#create labels for main window
+player = Label(win,text="Player",bg = '#35654d',font=('Times', 60, "bold"),fg='White');
+dealer = Label(win,text="Dealer",bg = '#35654d',font=('Times', 60, "bold"),fg='White');
+
+#labels for start window
+wlcm = Label(stscreen,text="BlackJack Card Trainer",bg = '#35654d',font=('Times', 30, "bold"),fg='#000000')
+sel = Label(stscreen,text="You need to select a difficulty",bg = '#35654d',font=('Times', 10, "bold"),fg='#000000')
+
+
+# place buttons and labels on main
+exit.grid(column=0, row=0,sticky = 'NW')
+deal.grid(column=1, row=3, columnspan= 2)
 card_1.grid(column=1, row=2)
 card_2.grid(column=2, row=2)
+player.grid(column=1,row = 1,columnspan= 2,sticky='S')
+dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
+
+#place buttons and labels on start screen
+difeasy.grid(column=0,row=1)
+difmedium.grid(column=1,row=1)
+difhard.grid(column=2,row=1)
+wlcm.grid(column=0,row=0,columnspan=3)
+start.grid(column=1,row=2)
+sel.grid(column=0,row=1,sticky='S',columnspan=3)
+sel.grid_remove()
 # key bindings
 win.bind('<Escape>', lambda event: quit())
 
 # Run window
+stscreen.mainloop()
 win.mainloop()
