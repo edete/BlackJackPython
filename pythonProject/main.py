@@ -1,4 +1,8 @@
 import random
+from tkinter import *
+from tkmacosx import Button
+from tkmacosx import CircleButton  # used to change button colour
+from PIL import ImageTk, Image
 
 
 class Shoe:
@@ -54,7 +58,7 @@ class Round:
             self.S.Cards.pop(0)
             self.Dealer.hand.append(card)
 
-    def value(self,user):
+    def value(self, user):
         handvalue = []
         hvalue = 0
         if user == "P":
@@ -63,12 +67,12 @@ class Round:
             for x in range(0,numcards):
                 if self.Player.hand[x]==1:
                     handvalue.append(11)
-                elif self.Player.hand[x]==11 || self.Player.hand[x]==12 || self.Player.hand[x]==13:
+                elif self.Player.hand[x]==11 or self.Player.hand[x]==12 or self.Player.hand[x]==13:
                     handvalue.append(10)
                 else:
                     handvalue.append(self.Player.hand[x])
             for x in range(0, numcards):
-                if handvalue[x]==11 && sum(handvalue)>21:
+                if handvalue[x]==11 and sum(handvalue)>21:
                     handvalue[x]=1
             hvalue = sum(handvalue)
             return hvalue
@@ -78,42 +82,35 @@ class Round:
             for x in range(0,numcards):
                 if self.Dealer.hand[x]==1:
                     handvalue.append(11)
-                elif self.Dealer.hand[x]==11 || self.Dealer.hand[x]==12 || self.Dealer.hand[x]==13:
+                elif self.Dealer.hand[x]==11 or self.Dealer.hand[x]==12 or self.Dealer.hand[x]==13:
                     handvalue.append(10)
                 else:
                     handvalue.append(self.Dealer.hand[x])
             for x in range(0, numcards):
-                if handvalue[x]==11 && sum(handvalue)>21:
-                    handvalue[x]=1
+                if handvalue[x] == 11 and sum(handvalue)>21:
+                    handvalue[x] = 1
             hvalue = sum(handvalue)
             return hvalue
+
     def win(self):
-        if self.value("P")>self.value("D") && self.value("P")<=21:
-            return 1 #Player wins
-        elif self.value("D")>self.value("P") && self.value("D")<=21:
-            return 2 #Dealer wins
+        if self.value("D") < self.value("P") <= 21:
+            return 1  # Player wins
+        elif self.value("P") < self.value("D") <= 21:
+            return 2  # Dealer wins
         elif self.value("D") == self.value("P"):
-            return 3 #push
+            return 3  # push
         else:
-            return 0 #no winner
+            return 0  # no winner
+
     def check(self):
-
-
-
-<<<<<<< HEAD
-R1 = Round()
-R1.shuffle()
-R1.newRound()
-R1.Player.hand
-R1.Dealer.hand
-=======
-
->>>>>>> origin/main
-
-from tkinter import *
-from tkmacosx import Button
-from tkmacosx import CircleButton  # used to change button colour
-from PIL import ImageTk, Image
+        if self.value("P") > 21:
+            return 2  # Dealer wins
+        elif self.value("P") == 21 and len(self.Player.hand) == 2:
+            return 1  # Player wins, has Blackjack
+        elif self.value("D") == 21:
+            return 2  # Dealer has Blackjack
+        else:
+            return 0  # No winner yet
 
 # Import tkinter library
 
@@ -166,24 +163,24 @@ def deal():
     dealer_hand = R1.Dealer.hand
 
 
-    filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
-    filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
+    filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
+    filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
     if hander[0] == 11:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
     if hander[0] == 12:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
     if hander[0] == 13:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
+        filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
     if hander[0] == 1:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
     if hander[1] == 11:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
     if hander[1] == 12:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
     if hander[1] == 13:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
+        filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
     if hander[1] == 1:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
 
     image10 = Image.open(filestring1)  # put your own path here when running
     image20 = Image.open(filestring2)
@@ -199,16 +196,16 @@ def deal():
 
 
 
-    filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
-    filestring4 = "/Users/hussain/Downloads/BlackJackPython/png/back.png"
+    filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
+    filestring4 = "/Users/Charlabeast/Documents/BlackJackPython/png/back.png"
     if dealer_hand[0] == 11:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
     if dealer_hand[0] == 12:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
     if dealer_hand[0] == 13:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
+        filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
     if dealer_hand[0] == 1:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
 
     image30 = Image.open(filestring3)  # put your own path here when running
     image40 = Image.open(filestring4)
@@ -265,10 +262,10 @@ win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 # create card Images
 image1 = Image.open(
-    "/Users/hussain/Downloads/BlackJackPython/png/back.png")  # put your own path here when running
-image2 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
-image3 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
-image4 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
+    "/Users/Charlabeast/Documents/BlackJackPython/png/back.png")  # put your own path here when running
+image2 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
+image3 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
+image4 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
 resized_image1 = image1.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image2 = image2.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image3 = image1.resize((110, 160), Image.Resampling.LANCZOS)
@@ -305,7 +302,7 @@ exit.grid(column=0, row=0, sticky='NW')
 deal.grid(column=1, row=3, columnspan=2)
 card_1.grid(column=1, row=2)
 card_2.grid(column=2, row=2)
-<<<<<<< HEAD
+
 dealer_card_1.grid(column=1, row=1)
 dealer_card_2.grid(column=2, row=1)
 player.grid(column=1,row = 1,columnspan= 2,sticky='S')
@@ -318,7 +315,7 @@ difhard.grid(column=2,row=1)
 wlcm.grid(column=0,row=0,columnspan=3)
 start.grid(column=1,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
-=======
+
 player.grid(column=1, row=1, columnspan=2, sticky='S')
 dealer.grid(column=1, row=0, columnspan=2, sticky='N')
 
@@ -329,7 +326,7 @@ difhard.grid(column=2, row=1)
 wlcm.grid(column=0, row=0, columnspan=3)
 start.grid(column=1, row=2)
 sel.grid(column=0, row=1, sticky='S', columnspan=3)
->>>>>>> origin/main
+
 sel.grid_remove()
 # key bindings
 win.bind('<Escape>', lambda event: quit())
