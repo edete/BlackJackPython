@@ -173,6 +173,10 @@ global dealer_card_2
 
 
 def deal():
+    R1.hit("P")
+    R1.hit("P")
+    R1.hit("D")
+    R1.hit("D")
     hander = R1.Player.hand
     global card_1
     global card_2
@@ -277,8 +281,7 @@ for i in range(0, 4):
 win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 # create card Images
-image1 = Image.open(
-    "/Users/Charlabeast/Documents/BlackJackPython/png/back.png")  # put your own path here when running
+image1 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")  # put your own path here when running
 image2 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
 image3 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
 image4 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
