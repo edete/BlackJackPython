@@ -1,71 +1,110 @@
-import numpy as np
 import random
 
 
 class Shoe:
-    def __init__(S):
-        S.Cards = []
+    def __init__(self):
+        self.Cards = []
         deck = []
         for x in range(1, 14):
             for y in range(0, 8):
                 deck.append(x)
-        S.Cards = deck
+        self.Cards = deck
 
 
 class Hand:
-    def __init__(H):
-        H.hand = []
+    def __init__(self):
+        self.hand = []
 
 
 class Round:
-    def __init__(R):
-        R.S = Shoe()
-        R.Player = Hand()
-        R.Dealer = Hand()
-        R.count = 0
+    def __init__(self):
+        self.S = Shoe()
+        self.Player = Hand()
+        self.Dealer = Hand()
+        self.count = 0
 
-    def shuffle(R):
-        random.shuffle(R.S.Cards)
-        random.shuffle(R.S.Cards)
-        random.shuffle(R.S.Cards)
+    def shuffle(self):
+        random.shuffle(self.S.Cards)
+        random.shuffle(self.S.Cards)
+        random.shuffle(self.S.Cards)
 
-    def newRound(R):
-        R.Player.hand.clear()
-        R.Dealer.hand.clear()
-        R.hit("P")
-        R.hit("P")
-        R.hit("D")
-        R.hit("D")
+    def newRound(self):
+        self.Player.hand.clear()
+        self.Dealer.hand.clear()
+        self.hit("P")
+        self.hit("P")
+        self.hit("D")
+        self.hit("D")
 
-    def hit(R, user):
+    def hit(self, user):
         if user == "P":
-            card = R.S.Cards[0]
+            card = self.S.Cards[0]
             if card >= 10:
-                R.count -= 1
+                self.count -= 1
             elif card < 7:
-                R.count += 1
-            R.S.Cards.pop(0)
-            R.Player.hand.append(card)
+                self.count += 1
+            self.S.Cards.pop(0)
+            self.Player.hand.append(card)
         elif user == "D":
-            card = R.S.Cards[0]
+            card = self.S.Cards[0]
             if card >= 10:
-                R.count -= 1
+                self.count -= 1
             elif card < 7:
-                R.count += 1
-            R.S.Cards.pop(0)
-            R.Dealer.hand.append(card)
+                self.count += 1
+            self.S.Cards.pop(0)
+            self.Dealer.hand.append(card)
+
+    def value(self,user):
+        handvalue = []
+        hvalue = 0
+        if user == "P":
+            numcards = len(self.Player.hand)
+
+            for x in range(0,numcards):
+                if self.Player.hand[x]==1:
+                    handvalue.append(11)
+                elif self.Player.hand[x]==11 || self.Player.hand[x]==12 || self.Player.hand[x]==13:
+                    handvalue.append(10)
+                else:
+                    handvalue.append(self.Player.hand[x])
+            for x in range(0, numcards):
+                if handvalue[x]==11 && sum(handvalue)>21:
+                    handvalue[x]=1
+            hvalue = sum(handvalue)
+            return hvalue
+        elif user == "D":
+            numcards = len(self.Dealer.hand)
+
+            for x in range(0,numcards):
+                if self.Dealer.hand[x]==1:
+                    handvalue.append(11)
+                elif self.Dealer.hand[x]==11 || self.Dealer.hand[x]==12 || self.Dealer.hand[x]==13:
+                    handvalue.append(10)
+                else:
+                    handvalue.append(self.Dealer.hand[x])
+            for x in range(0, numcards):
+                if handvalue[x]==11 && sum(handvalue)>21:
+                    handvalue[x]=1
+            hvalue = sum(handvalue)
+            return hvalue
+    def win(self):
+        if self.value("P")>self.value("D") && self.value("P")<=21:
+            return 1 #Player wins
+        elif self.value("D")>self.value("P") && self.value("D")<=21:
+            return 2 #Dealer wins
+        elif self.value("D") == self.value("P"):
+            return 3 #push
+        else:
+            return 0 #no winner
+    def check(self):
 
 
-R1 = Round()
-R1.shuffle()
-R1.newRound()
-R1.Player.hand
+
 
 
 from tkinter import *
-from tkinter import ttk
 from tkmacosx import Button
-from tkmacosx import CircleButton # used to change button colour
+from tkmacosx import CircleButton  # used to change button colour
 from PIL import ImageTk, Image
 
 # Import tkinter library
@@ -81,6 +120,8 @@ win.config(background='#35654d')
 stscreen.config(background='#35654d')
 win.withdraw()
 stscreen.eval('tk::PlaceWindow . center')
+
+
 # establish commands
 def startgame():
     if diffic != None:
@@ -89,8 +130,7 @@ def startgame():
     else:
         sel.grid()
 
-    #if diffuclty hasnt been pressed, dont start game
-
+    # if diffuclty hasnt been pressed, dont start game
 
 
 def establishround():
@@ -103,7 +143,7 @@ def establishround():
 
 
 def quit():
-    #win.iconify()
+    # win.iconify()
     win.destroy()
 
 
@@ -138,28 +178,36 @@ def deal():
     imageres20 = ImageTk.PhotoImage(resized_image20)
     card_1.config(image=imageres10)
     card_2.config(image=imageres20)
-    card_1.image=imageres10
-    card_2.image=imageres20
+    card_1.image = imageres10
+    card_2.image = imageres20
+
 
 diffic = None
+
+
 def easy():
     global diffic
     diffic = "Easy"
     difeasy.config(state="pressed")
     difmedium.config(state="disabled")
     difhard.config(state="disabled")
+
+
 def medium():
     global diffic
     diffic = "Medium"
     difmedium.config(state="pressed")
     difeasy.config(state="disabled")
     difhard.config(state="disabled")
+
+
 def hard():
     global diffic
     diffic = "Hard"
     difhard.config(state="pressed")
     difmedium.config(state="disabled")
     difeasy.config(state="disabled")
+
 
 # creating grid
 for i in range(0, 4):
@@ -184,39 +232,38 @@ imageres2 = ImageTk.PhotoImage(resized_image2)
 card_1 = Label(win, image=imageres1)
 card_2 = Label(win, image=imageres2)
 # Create buttons for main window
-start = CircleButton(win, text="Start", command=establishround,borderless=1)
-exit = CircleButton(win, text="Exit", command=quit,borderless=1)
-deal = Button(win, text="Deal", command=deal,borderless=1,height = 50)
+start = CircleButton(win, text="Start", command=establishround, borderless=1)
+exit = CircleButton(win, text="Exit", command=quit, borderless=1)
+deal = Button(win, text="Deal", command=deal, borderless=1, height=50)
 
-#create buttosn for start window
-start = CircleButton(stscreen, text="Start", command=startgame,borderless=1)
-difeasy = CircleButton(stscreen,text='Easy',command=easy,borderless=1)
-difmedium = CircleButton(stscreen,text='Medium',command=medium,borderless=1)
-difhard = CircleButton(stscreen,text='Hard',command=hard,borderless=1)
-#create labels for main window
-player = Label(win,text="Player",bg = '#35654d',font=('Times', 60, "bold"),fg='White');
-dealer = Label(win,text="Dealer",bg = '#35654d',font=('Times', 60, "bold"),fg='White');
+# create buttosn for start window
+start = CircleButton(stscreen, text="Start", command=startgame, borderless=1)
+difeasy = CircleButton(stscreen, text='Easy', command=easy, borderless=1)
+difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
+difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
+# create labels for main window
+player = Label(win, text="Player", bg='#35654d', font=('Times', 60, "bold"), fg='White');
+dealer = Label(win, text="Dealer", bg='#35654d', font=('Times', 60, "bold"), fg='White');
 
-#labels for start window
-wlcm = Label(stscreen,text="BlackJack Card Trainer",bg = '#35654d',font=('Times', 30, "bold"),fg='#000000')
-sel = Label(stscreen,text="You need to select a difficulty",bg = '#35654d',font=('Times', 10, "bold"),fg='#000000')
-
+# labels for start window
+wlcm = Label(stscreen, text="BlackJack Card Trainer", bg='#35654d', font=('Times', 30, "bold"), fg='#000000')
+sel = Label(stscreen, text="You need to select a difficulty", bg='#35654d', font=('Times', 10, "bold"), fg='#000000')
 
 # place buttons and labels on main
-exit.grid(column=0, row=0,sticky = 'NW')
-deal.grid(column=1, row=3, columnspan= 2)
+exit.grid(column=0, row=0, sticky='NW')
+deal.grid(column=1, row=3, columnspan=2)
 card_1.grid(column=1, row=2)
 card_2.grid(column=2, row=2)
-player.grid(column=1,row = 1,columnspan= 2,sticky='S')
-dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
+player.grid(column=1, row=1, columnspan=2, sticky='S')
+dealer.grid(column=1, row=0, columnspan=2, sticky='N')
 
-#place buttons and labels on start screen
-difeasy.grid(column=0,row=1)
-difmedium.grid(column=1,row=1)
-difhard.grid(column=2,row=1)
-wlcm.grid(column=0,row=0,columnspan=3)
-start.grid(column=1,row=2)
-sel.grid(column=0,row=1,sticky='S',columnspan=3)
+# place buttons and labels on start screen
+difeasy.grid(column=0, row=1)
+difmedium.grid(column=1, row=1)
+difhard.grid(column=2, row=1)
+wlcm.grid(column=0, row=0, columnspan=3)
+start.grid(column=1, row=2)
+sel.grid(column=0, row=1, sticky='S', columnspan=3)
 sel.grid_remove()
 # key bindings
 win.bind('<Escape>', lambda event: quit())
