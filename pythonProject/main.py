@@ -79,8 +79,8 @@ class Round:
         elif user == "D":
             numcards = len(self.Dealer.hand)
 
-            for x in range(0,numcards):
-                if self.Dealer.hand[x]==1:
+            for x in range(0, numcards):
+                if self.Dealer.hand[x] == 1:
                     handvalue.append(11)
                 elif self.Dealer.hand[x]==11 or self.Dealer.hand[x]==12 or self.Dealer.hand[x]==13:
                     handvalue.append(10)
@@ -111,6 +111,21 @@ class Round:
             return 2  # Dealer has Blackjack
         else:
             return 0  # No winner yet
+
+    def playerstand(self):
+        while self.value("D") <= 21:
+            if self.value("D") <= self.value("P") and self.value("D") < 17:
+                card = self.S.Cards[0]
+                if 1 < card < 7:
+                    self.count += 1
+                elif card >= 10 or card == 1:
+                    self.count -= 1
+                self.Dealer.hand.append(card)
+                self.S.Cards.pop(0)
+            elif self.value("D") >= 17:
+                break
+            else:
+                break
 
 # Import tkinter library
 
@@ -155,6 +170,7 @@ def quit():
 global dealer_card_1
 
 global dealer_card_2
+
 
 def deal():
     hander = R1.Player.hand
