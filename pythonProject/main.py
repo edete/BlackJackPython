@@ -60,7 +60,7 @@ R1 = Round()
 R1.shuffle()
 R1.newRound()
 R1.Player.hand
-
+R1.Dealer.hand
 
 from tkinter import *
 from tkinter import ttk
@@ -107,28 +107,35 @@ def quit():
     win.destroy()
 
 
+global dealer_card_1
+
+global dealer_card_2
+
 def deal():
     hander = R1.Player.hand
     global card_1
     global card_2
-    filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
-    filestring2 = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
+    dealer_hand = R1.Dealer.hand
+
+
+    filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
+    filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
     if hander[0] == 11:
-        filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
     if hander[0] == 12:
-        filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
     if hander[0] == 13:
-        filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/king_of_clubs.png"
+        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
     if hander[0] == 1:
-        filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
     if hander[1] == 11:
-        filestring2 = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
     if hander[1] == 12:
-        filestring2 = "/Users/emersondetering/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
     if hander[1] == 13:
-        filestring2 = "/Users/emersondetering/Downloads/BlackJackPython/png/king_of_clubs.png"
+        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
     if hander[1] == 1:
-        filestring2 = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
 
     image10 = Image.open(filestring1)  # put your own path here when running
     image20 = Image.open(filestring2)
@@ -140,6 +147,34 @@ def deal():
     card_2.config(image=imageres20)
     card_1.image=imageres10
     card_2.image=imageres20
+
+
+
+    filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
+    filestring4 = "/Users/hussain/Downloads/BlackJackPython/png/back.png"
+    if dealer_hand[0] == 11:
+        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
+    if dealer_hand[0] == 12:
+        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
+    if dealer_hand[0] == 13:
+        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
+    if dealer_hand[0] == 1:
+        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+
+    image30 = Image.open(filestring3)  # put your own path here when running
+    image40 = Image.open(filestring4)
+    resized_image30 = image30.resize((110, 160), Image.Resampling.LANCZOS)
+    resized_image40 = image40.resize((110, 160), Image.Resampling.LANCZOS)
+    imageres30 = ImageTk.PhotoImage(resized_image30)
+    imageres40 = ImageTk.PhotoImage(resized_image40)
+    dealer_card_1.config(image3=imageres30)
+    dealer_card_2.config(image4=imageres40)
+    dealer_card_1.image = imageres30
+    dealer_card_2.image = imageres40
+
+
+
+
 
 diffic = None
 def easy():
@@ -174,15 +209,23 @@ win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 # create card Images
 image1 = Image.open(
-    "/Users/emersondetering/Downloads/BlackJackPython/png/back.png")  # put your own path here when running
-image2 = Image.open("/Users/emersondetering/Downloads/BlackJackPython/png/back.png")
+    "/Users/hussain/Downloads/BlackJackPython/png/back.png")  # put your own path here when running
+image2 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
+image3 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
+image4 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
 resized_image1 = image1.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image2 = image2.resize((110, 160), Image.Resampling.LANCZOS)
+resized_image3 = image1.resize((110, 160), Image.Resampling.LANCZOS)
+resized_image4 = image1.resize((110, 160), Image.Resampling.LANCZOS)
 imageres1 = ImageTk.PhotoImage(resized_image1)
 imageres2 = ImageTk.PhotoImage(resized_image2)
+imageres3 = ImageTk.PhotoImage(resized_image3)
+imageres4 = ImageTk.PhotoImage(resized_image4)
 # Create Cards
 card_1 = Label(win, image=imageres1)
 card_2 = Label(win, image=imageres2)
+dealer_card_1 = Label(win, image=imageres3)
+dealer_card_2 = Label(win, image=imageres4)
 # Create buttons for main window
 start = CircleButton(win, text="Start", command=establishround,borderless=1)
 exit = CircleButton(win, text="Exit", command=quit,borderless=1)
@@ -207,6 +250,8 @@ exit.grid(column=0, row=0,sticky = 'NW')
 deal.grid(column=1, row=3, columnspan= 2)
 card_1.grid(column=1, row=2)
 card_2.grid(column=2, row=2)
+dealer_card_1.grid(column=1, row=1)
+dealer_card_2.grid(column=2, row=1)
 player.grid(column=1,row = 1,columnspan= 2,sticky='S')
 dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
 
