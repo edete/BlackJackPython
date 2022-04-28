@@ -131,7 +131,7 @@ class Round:
 
 # Create an instance of Tkinter frame or window
 win = Tk()
-stscreen = Tk();
+stscreen = Tk()
 
 # Set the geometry of tkinter frame
 stscreen.geometry("450x450")
@@ -153,10 +153,12 @@ def startgame():
     # if diffuclty hasnt been pressed, dont start game
 
 
+global R1
+R1 = Round()
+
+
 def establishround():
-    global R1
     start.config(text="Stop")
-    R1 = Round()
     R1.shuffle()
     R1.newRound()
     # need code to establish round
@@ -173,34 +175,37 @@ global dealer_card_2
 
 
 def deal():
+    R1.shuffle()
     R1.hit("P")
     R1.hit("P")
-    R1.hit("D")
-    R1.hit("D")
     hander = R1.Player.hand
+    print(hander)
     global card_1
     global card_2
     dealer_hand = R1.Dealer.hand
+    print(dealer_hand)
 
-
-    filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
-    filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
     if hander[0] == 11:
         filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
-    if hander[0] == 12:
+    elif hander[0] == 12:
         filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
-    if hander[0] == 13:
+    elif hander[0] == 13:
         filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
-    if hander[0] == 1:
+    elif hander[0] == 1:
         filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
+    else:
+        filestring1 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
+
     if hander[1] == 11:
         filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
-    if hander[1] == 12:
+    elif hander[1] == 12:
         filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
-    if hander[1] == 13:
+    elif hander[1] == 13:
         filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
-    if hander[1] == 1:
+    elif hander[1] == 1:
         filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
+    else:
+        filestring2 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
 
     image10 = Image.open(filestring1)  # put your own path here when running
     image20 = Image.open(filestring2)
@@ -212,9 +217,6 @@ def deal():
     card_2.config(image=imageres20)
     card_1.image = imageres10
     card_2.image = imageres20
-
-
-
 
     filestring3 = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
     filestring4 = "/Users/Charlabeast/Documents/BlackJackPython/png/back.png"
@@ -237,9 +239,8 @@ def deal():
     dealer_card_2.config(image4=imageres40)
     dealer_card_1.image = imageres30
     dealer_card_2.image = imageres40
-
-
-
+    print(dealer_hand)
+    print(hander)
 
 
 diffic = None
