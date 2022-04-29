@@ -146,8 +146,12 @@ stscreen.eval('tk::PlaceWindow . center')
 poscard1 = 0.4
 #global poscard2
 poscard2 = 0.5
+
+poscard1d = 0.4
+poscard2d = 0.5
 #hit card counter
 counter = 2
+
 
 
 # establish commands
@@ -163,12 +167,13 @@ def startgame():
 
 global R1
 R1 = Round()
+R1.shuffle()
 diffic = None
 
-def establishround():
-    start.config(text="Stop")
-    R1.shuffle()
-    R1.newRound()
+#def establishround():
+ #   start.config(text="Stop")
+  #  R1.shuffle()
+   # R1.newRound()
     # need code to establish round
 
 
@@ -351,7 +356,7 @@ card_2 = Label(win, image=imageres2)
 dealer_card_1 = Label(win, image=imageres3)
 dealer_card_2 = Label(win, image=imageres4)
 # Create buttons for main window
-start = CircleButton(win, text="Start", command=establishround, borderless=1)
+#start = CircleButton(win, text="Start", command=establishround, borderless=1)
 exit = CircleButton(win, text="Exit", command=quit, borderless=1)
 deal = Button(win, text="Deal", command=deal, borderless=1, height=50)
 hitter = Button(win, text="Hit", command=hit, borderless=1, height=50)
@@ -362,8 +367,8 @@ difeasy = CircleButton(stscreen, text='Easy', command=easy, borderless=1)
 difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
 difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
 # create labels for main window
-player = Label(win, text="Player", bg='#35654d', font=('Times', 60, "bold"), fg='White');
-dealer = Label(win, text="Dealer", bg='#35654d', font=('Times', 60, "bold"), fg='White');
+player = Label(win, text="Player", bg='#35654d', font=('Times', 60, "bold"), fg='White')
+dealer = Label(win, text="Dealer", bg='#35654d', font=('Times', 60, "bold"), fg='White')
 
 # labels for start window
 wlcm = Label(stscreen, text="BlackJack Card Trainer", bg='#35654d', font=('Times', 30, "bold"), fg='#000000')
@@ -378,8 +383,8 @@ card_1.place(relx=poscard1,rely=0.6)
 card_2.place(relx=poscard2,rely=0.6)
 hitter.grid(column=1, row=3,columnspan=2)
 
-dealer_card_1.grid(column=1, row=0,sticky='S')
-dealer_card_2.grid(column=2, row=0,sticky = 'S')
+dealer_card_1.place(relx=poscard1d,rely=0.15)
+dealer_card_2.place(relx=poscard2d,rely=0.15)
 player.grid(column=1,row = 1,columnspan= 2)
 dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
 
@@ -392,14 +397,6 @@ start.grid(column=1,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
 
 
-
-# place buttons and labels on start screen
-difeasy.grid(column=0, row=1)
-difmedium.grid(column=1, row=1)
-difhard.grid(column=2, row=1)
-wlcm.grid(column=0, row=0, columnspan=3)
-start.grid(column=1, row=2)
-sel.grid(column=0, row=1, sticky='S', columnspan=3)
 
 sel.grid_remove()
 # key bindings
