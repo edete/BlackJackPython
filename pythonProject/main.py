@@ -143,9 +143,9 @@ stscreen.eval('tk::PlaceWindow . center')
 
 #positions of cards
 #global poscard1
-poscard1 = 0.45
+poscard1 = 0.4
 #global poscard2
-poscard2 = 0.55
+poscard2 = 0.5
 #hit card counter
 counter = 2
 
@@ -274,15 +274,18 @@ def hit():
     imagereshit = ImageTk.PhotoImage(resized_imagehit)
     hitcard = Label(win, image=imagereshit)
     hitcard.image = imagereshit
-    poscard1 = poscard1 - 0.1
-    poscard2 = poscard2 - 0.1
 
-    hitcard.place(rely=0.7,relx = 0.6)
-    card_1.place(rely=0.7,relx=(poscard1))
-    card_2.place(rely=0.7,relx=(poscard2))
+    shift = 0.05*(counter-1)
+
+    poscard1 = (poscard1 - 0.1)
+    poscard2 = (poscard2 - 0.1)
+
+    hitcard.place(rely=0.6,relx = 0.5 + shift)
+    card_1.place(rely=0.6,relx=(poscard1 + shift))
+    card_2.place(rely=0.6,relx=(poscard2 + shift))
     if counter > 2:
         for j in range (0,len(cardlist)):
-            cardlist[j].place(rely = 0.7, relx = (poscard2 + 0.1)+(j * 0.1))
+            cardlist[j].place(rely = 0.6, relx = ((poscard2 + 0.1)+(j * 0.1) + shift))
     cardlist.append(hitcard)
     #print(cardlist)
     #print(counter)
@@ -371,13 +374,13 @@ exit.grid(column=0, row=0, sticky='NW')
 deal.grid(column=3, row=0, sticky='NE')
 #card_1.grid(column=1, row=2,sticky='E')
 #card_2.grid(column=2, row=2,sticky='W')
-card_1.place(relx=poscard1,rely=0.7)
-card_2.place(relx=poscard2,rely=0.7)
+card_1.place(relx=poscard1,rely=0.6)
+card_2.place(relx=poscard2,rely=0.6)
 hitter.grid(column=1, row=3,columnspan=2)
 
-dealer_card_1.grid(column=1, row=1)
-dealer_card_2.grid(column=2, row=1)
-player.grid(column=1,row = 1,columnspan= 2,sticky='S')
+dealer_card_1.grid(column=1, row=0,sticky='S')
+dealer_card_2.grid(column=2, row=0,sticky = 'S')
+player.grid(column=1,row = 1,columnspan= 2)
 dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
 
 #place buttons and labels on start screen
