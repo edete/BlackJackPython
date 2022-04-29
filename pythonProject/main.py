@@ -1,4 +1,5 @@
 import random
+import time
 from tkinter import *
 from tkmacosx import Button
 from tkmacosx import CircleButton  # used to change button colour
@@ -10,7 +11,7 @@ class Shoe:
         self.Cards = []
         deck = []
         for x in range(1, 14):
-            for y in range(0, 8):
+            for y in range(0, 16):
                 deck.append(x)
         self.Cards = deck
 
@@ -108,7 +109,7 @@ class Round:
         elif self.value("P") == 21 and len(self.Player.hand) == 2:
             return 1  # Player wins, has Blackjack
         elif self.value("D") == 21:
-            return 2  # Dealer has Blackjack
+            return 3  # Dealer has Blackjack
         else:
             return 0  # No winner yet
 
@@ -188,18 +189,36 @@ global dealer_card_2
 
 
 def deal():
+    global card_1
+    global card_2
+    global counter
+    counter = 2             #resetting the board
+
+    for j in cardlist:
+        j.destroy()
+
+    for j in dealercardlist:
+        j.destroy()
+
+    cardlist.clear()
+    dealercardlist.clear()
+    global poscard1
+    poscard1  = 0.4
+    global poscard2
+    poscard2 = 0.5
+    global poscard1d
+    poscard1d = 0.4
+    global poscard2d
+    poscard2d = 0.5
+    card_1.place(relx=poscard1, rely=0.6)
+    card_2.place(relx=poscard2, rely=0.6)
+    dealer_card_1.place(relx=poscard1, rely=0.15)
+    dealer_card_2.place(relx=poscard2, rely=0.15)
     global hander
     R1.newRound()
     R1.shuffle()
-    #R1.hit("P")
-    #R1.hit("P")
-    #R1.hit("D")
     hander = R1.Player.hand
-    #print(hander)
-    global card_1
-    global card_2
     dealer_hand = R1.Dealer.hand
-    #print(dealer_hand)
 
     if hander[0] == 11:
         filestring1 = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
@@ -233,7 +252,8 @@ def deal():
     card_2.config(image=imageres20)
     card_1.image = imageres10
     card_2.image = imageres20
-
+    print(hander)
+    print(dealer_hand)
     filestring3 = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
     filestring4 = "/Users/emersondetering/Downloads/BlackJackPython/png/back.png"
     if dealer_hand[0] == 11:
@@ -255,9 +275,24 @@ def deal():
     dealer_card_2.config(image=imageres40)
     dealer_card_1.image = imageres30
     dealer_card_2.image = imageres40
-   # print(dealer_hand)
-    # print(hander)
-cardlist = []  # creating label list of cards to add them dynamically
+
+    cardcount.set(R1.count)
+
+    w = R1.check()
+    if w == 1:
+        print("Player has Blackjack")
+    elif w == 2:
+        print("Dealer wins")
+
+    elif w == 3:
+        print("Dealer has Blackjack")
+    elif w == 0:
+        print("No winner determined")
+
+global cardlist
+global dealercardlist
+cardlist = []# creating label list of cards to add them dynamically
+dealercardlist = []
 
 def hit():
     global counter
@@ -292,16 +327,82 @@ def hit():
         for j in range (0,len(cardlist)):
             cardlist[j].place(rely = 0.6, relx = ((poscard2 + 0.1)+(j * 0.1) + shift))
     cardlist.append(hitcard)
-    #print(cardlist)
-    #print(counter)
-
     counter = counter + 1
+    cardcount.set(R1.count) #update card count variable
+    w = R1.check()
+    if w == 1:
+        print("Player has Blackjack")
+    elif w == 2:
+        print("Dealer wins")
+    elif w == 3:
+        print("Dealer has Blackjack")
+    elif w == 0:
+        print("No winner determined")
+
+def stand():
+    global poscard2d
+    global poscard1d
+    R1.playerstand()
+    handsize = len(R1.Dealer.hand)
+
+    secondcardvalue = R1.Dealer.hand[1]
+    filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(secondcardvalue) + "_of_clubs.png"
+    if secondcardvalue == 11:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
+    if secondcardvalue == 12:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/queen_of_clubs.png"
+    if secondcardvalue == 13:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/king_of_clubs.png"
+    if secondcardvalue == 1:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    imagesecond = Image.open(filestringsecond)  # put your own path here when running
+    resized_imagesecond = imagesecond.resize((110, 160), Image.Resampling.LANCZOS)
+    imageressecond = ImageTk.PhotoImage(resized_imagesecond)
+    dealer_card_2.config(image=imageressecond)
+    dealer_card_2.image = imageressecond
+
+    for x in range(1, handsize):
+        cardvalue = R1.Dealer.hand[x]
+        filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(cardvalue) + "_of_clubs.png"
+        if cardvalue == 11:
+            filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
+        if cardvalue == 12:
+            filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/queen_of_clubs.png"
+        if cardvalue == 13:
+            filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/king_of_clubs.png"
+        if cardvalue == 1:
+            filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        imagehit = Image.open(filestringhit)  # put your own path here when running
+        resized_imagehit = imagehit.resize((110, 160), Image.Resampling.LANCZOS)
+        imagereshit = ImageTk.PhotoImage(resized_imagehit)
+        hitcard = Label(win, image=imagereshit)
+        hitcard.image = imagereshit
+
+        shift = 0.05 * (x)
+
+        poscard1d = (poscard1d - 0.1)
+        poscard2d = (poscard2d - 0.1)
+
+        hitcard.place(rely=0.15, relx=0.5 + shift)
+        dealer_card_1.place(rely=0.15, relx=(poscard1d + shift))
+        dealer_card_2.place(rely=0.15, relx=(poscard2d + shift))
+        if x > 1:
+            for j in range(0, len(dealercardlist)):
+                dealercardlist[j].place(rely=0.15, relx=((poscard2d + 0.1) + (j * 0.1) + shift))
+        dealercardlist.append(hitcard)
+
+    w = R1.win()
+    if w == 1:
+        print("Player wins")
+    elif w == 2:
+        print("Dealer wins")
+    elif w == 3:
+        print("push")
+    elif w == 0:
+        print("no winner determined")
 
 
-
-
-
-#difficlty functions
+ # difficlty functions
 def easy():
     global diffic
     diffic = "Easy"
@@ -360,28 +461,34 @@ dealer_card_2 = Label(win, image=imageres4)
 exit = CircleButton(win, text="Exit", command=quit, borderless=1)
 deal = Button(win, text="Deal", command=deal, borderless=1, height=50)
 hitter = Button(win, text="Hit", command=hit, borderless=1, height=50)
+stand = Button(win, text="Stand", command=stand, borderless=1, height=50)
 
 # create buttosn for start window
 start = CircleButton(stscreen, text="Start", command=startgame, borderless=1)
 difeasy = CircleButton(stscreen, text='Easy', command=easy, borderless=1)
 difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
 difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
+
+cardcount = IntVar(win, R1.count)
 # create labels for main window
 player = Label(win, text="Player", bg='#35654d', font=('Times', 60, "bold"), fg='White')
 dealer = Label(win, text="Dealer", bg='#35654d', font=('Times', 60, "bold"), fg='White')
+counting = Label(win, textvariable = cardcount)
 
 # labels for start window
-wlcm = Label(stscreen, text="BlackJack Card Trainer", bg='#35654d', font=('Times', 30, "bold"), fg='#000000')
-sel = Label(stscreen, text="You need to select a difficulty", bg='#35654d', font=('Times', 10, "bold"), fg='#000000')
+wlcm = Label(stscreen, text="Blackjack Card Counting Trainer", bg='#35654d', font=('Times', 30, "bold"), fg='#000000')
+sel = Label(stscreen, text="Select a difficulty", bg='#35654d', font=('Times', 10, "bold"), fg='#000000')
 
 # place buttons and labels on main
 exit.grid(column=0, row=0, sticky='NW')
 deal.grid(column=3, row=0, sticky='NE')
+stand.grid(column=2, row=3)
 #card_1.grid(column=1, row=2,sticky='E')
 #card_2.grid(column=2, row=2,sticky='W')
 card_1.place(relx=poscard1,rely=0.6)
 card_2.place(relx=poscard2,rely=0.6)
-hitter.grid(column=1, row=3,columnspan=2)
+hitter.grid(column=1, row=3)
+counting.grid(column=0,row=1)
 
 dealer_card_1.place(relx=poscard1d,rely=0.15)
 dealer_card_2.place(relx=poscard2d,rely=0.15)
