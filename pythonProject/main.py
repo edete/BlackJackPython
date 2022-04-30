@@ -192,6 +192,11 @@ def deal():
     global card_1
     global card_2
     global counter
+
+    stand.config(state = "normal")
+    hitter.config(state = "normal")
+    winner.grid_remove()
+    player.grid()
     counter = 2             #resetting the board
 
     for j in cardlist:
@@ -280,14 +285,24 @@ def deal():
 
     w = R1.check()
     if w == 1:
-        print("Player has Blackjack")
-    elif w == 2:
-        print("Dealer wins")
+        winnervar.set("You win")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
 
+    elif w == 2:
+        winnervar.set("Dealer wins")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
     elif w == 3:
-        print("Dealer has Blackjack")
-    elif w == 0:
-        print("No winner determined")
+        winnervar.set("Push")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
 
 global cardlist
 global dealercardlist
@@ -295,6 +310,7 @@ cardlist = []# creating label list of cards to add them dynamically
 dealercardlist = []
 
 def hit():
+
     global counter
     global poscard1
     global poscard2
@@ -331,15 +347,27 @@ def hit():
     cardcount.set(R1.count) #update card count variable
     w = R1.check()
     if w == 1:
-        print("Player has Blackjack")
+        winnervar.set("You win")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
+
     elif w == 2:
-        print("Dealer wins")
+        winnervar.set("Dealer wins")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
     elif w == 3:
-        print("Dealer has Blackjack")
-    elif w == 0:
-        print("No winner determined")
+        winnervar.set("Push")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
 
 def stand():
+
     global poscard2d
     global poscard1d
     R1.playerstand()
@@ -393,13 +421,25 @@ def stand():
 
     w = R1.win()
     if w == 1:
-        print("Player wins")
+        winnervar.set("You win")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
+
     elif w == 2:
-        print("Dealer wins")
+        winnervar.set("Dealer wins")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
     elif w == 3:
-        print("push")
-    elif w == 0:
-        print("no winner determined")
+        winnervar.set("Push")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
+
 
 
  # difficlty functions
@@ -470,10 +510,14 @@ difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
 difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
 
 cardcount = IntVar(win, R1.count)
+winnervar = StringVar(win, "")
+
 # create labels for main window
 player = Label(win, text="Player", bg='#35654d', font=('Times', 60, "bold"), fg='White')
 dealer = Label(win, text="Dealer", bg='#35654d', font=('Times', 60, "bold"), fg='White')
 counting = Label(win, textvariable = cardcount)
+winner = Label(win, textvariable = winnervar, bg='#35654d', font=('Times', 80, "bold"), fg='White')
+
 
 # labels for start window
 wlcm = Label(stscreen, text="Blackjack Card Counting Trainer", bg='#35654d', font=('Times', 30, "bold"), fg='#000000')
@@ -483,8 +527,6 @@ sel = Label(stscreen, text="Select a difficulty", bg='#35654d', font=('Times', 1
 exit.grid(column=0, row=0, sticky='NW')
 deal.grid(column=3, row=0, sticky='NE')
 stand.grid(column=2, row=3)
-#card_1.grid(column=1, row=2,sticky='E')
-#card_2.grid(column=2, row=2,sticky='W')
 card_1.place(relx=poscard1,rely=0.6)
 card_2.place(relx=poscard2,rely=0.6)
 hitter.grid(column=1, row=3)
@@ -494,7 +536,8 @@ dealer_card_1.place(relx=poscard1d,rely=0.15)
 dealer_card_2.place(relx=poscard2d,rely=0.15)
 player.grid(column=1,row = 1,columnspan= 2)
 dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
-
+winner.grid(column=1,row = 1,columnspan= 2)
+winner.grid_remove()
 #place buttons and labels on start screen
 difeasy.grid(column=0,row=1)
 difmedium.grid(column=1,row=1)
@@ -502,6 +545,9 @@ difhard.grid(column=2,row=1)
 wlcm.grid(column=0,row=0,columnspan=3)
 start.grid(column=1,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
+
+
+#create 
 
 
 
