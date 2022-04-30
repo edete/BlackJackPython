@@ -4,7 +4,7 @@ from tkinter import *
 from tkmacosx import Button
 from tkmacosx import CircleButton  # used to change button colour
 from PIL import ImageTk, Image
-
+import ast
 
 class Shoe:
     def __init__(self):
@@ -100,6 +100,8 @@ class Round:
             return 2  # Dealer wins
         elif self.value("D") == self.value("P"):
             return 3  # push
+        elif self.value("D") > 21:
+            return 1
         else:
             return 0  # no winner
 
@@ -110,6 +112,8 @@ class Round:
             return 1  # Player wins, has Blackjack
         elif self.value("D") == 21:
             return 3  # Dealer has Blackjack
+        elif self.value("D") == self.value("P"):
+            return 4
         else:
             return 0  # No winner yet
 
@@ -154,16 +158,56 @@ poscard2d = 0.5
 counter = 2
 
 
+def readanswer(): #read card counter answer from user
+
+
+    answer = userinput.get()
+    if answer.lstrip('-').isnumeric(): #This is so that if input is negative it works
+
+        if int(answer.lstrip('-')) == R1.count:
+            print("You are correct") # we need labels for these
+            userinput.delete(0,'end')
+        else:
+            print("You are incorrect") # we need labels for these
+            userinput.delete(0,'end')
+    else:
+        print("Please enter an integer") # we need labels for these
+        userinput.delete(0,'end')
+
+
+
+
 
 # establish commands
 def startgame():
-    if diffic != None:
+    global diffcounter
+    diffcounter = 0
+    if diffic != None: # if diffuclty hasnt been pressed, dont start game
+        diffcounter = 0
         stscreen.destroy()
         win.deiconify()
     else:
         sel.grid()
 
-    # if diffuclty hasnt been pressed, dont start game
+
+def showdealersecond():
+    # reveal second dealer card
+    secondcardvalue = R1.Dealer.hand[1]
+    filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(
+        secondcardvalue) + "_of_clubs.png"
+    if secondcardvalue == 11:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/jack_of_clubs.png"
+    if secondcardvalue == 12:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/queen_of_clubs.png"
+    if secondcardvalue == 13:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/king_of_clubs.png"
+    if secondcardvalue == 1:
+        filestringsecond = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    imagesecond = Image.open(filestringsecond)  # put your own path here when running
+    resized_imagesecond = imagesecond.resize((110, 160), Image.Resampling.LANCZOS)
+    imageressecond = ImageTk.PhotoImage(resized_imagesecond)
+    dealer_card_2.config(image=imageressecond)
+    dealer_card_2.image = imageressecond
 
 
 global R1
@@ -189,14 +233,17 @@ global dealer_card_2
 
 
 def deal():
+    deal.config(state = "disabled")
     global card_1
     global card_2
     global counter
-
+    global diffcounter
+    diffcounter = diffcounter + 1
     stand.config(state = "normal")
     hitter.config(state = "normal")
     winner.grid_remove()
     player.grid()
+    userinput.grid_remove()
     counter = 2             #resetting the board
 
     for j in cardlist:
@@ -219,6 +266,7 @@ def deal():
     card_2.place(relx=poscard2, rely=0.6)
     dealer_card_1.place(relx=poscard1, rely=0.15)
     dealer_card_2.place(relx=poscard2, rely=0.15)
+
     global hander
     R1.newRound()
     R1.shuffle()
@@ -270,7 +318,7 @@ def deal():
     if dealer_hand[0] == 1:
         filestring3 = "/Users/emersondetering/Downloads/BlackJackPython/png/ace_of_clubs.png"
 
-    image30 = Image.open(filestring3)  # put your own path here when running
+    image30 = Image.open(filestring3)  #put your own path here when running
     image40 = Image.open(filestring4)
     resized_image30 = image30.resize((110, 160), Image.Resampling.LANCZOS)
     resized_image40 = image40.resize((110, 160), Image.Resampling.LANCZOS)
@@ -284,25 +332,43 @@ def deal():
     cardcount.set(R1.count)
 
     w = R1.check()
-    if w == 1:
-        winnervar.set("You win")
-        winner.grid()
-        player.grid_remove()
-        stand.config(state="disabled")
-        hitter.config(state="disabled")
 
-    elif w == 2:
+    if w == 2:
         winnervar.set("Dealer wins")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state ="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
     elif w == 3:
-        winnervar.set("Push")
+        winnervar.set("BlackJack! Dealer wins!")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
+    elif w == 4:
+        winnervar.set("You both have BlackJack! Push!")
+        winner.grid()
+        player.grid_remove()
+        stand.config(state="disabled")
+        hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
 
 global cardlist
 global dealercardlist
@@ -347,24 +413,41 @@ def hit():
     cardcount.set(R1.count) #update card count variable
     w = R1.check()
     if w == 1:
-        winnervar.set("You win")
+        winnervar.set("You win!")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
-
-    elif w == 2:
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.delete(0, 'end')
+            userinput.grid()
+            #readanswer()
+    if w == 2:
         winnervar.set("Dealer wins")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.delete(0, 'end')
+            userinput.grid()
+            #readanswer()
     elif w == 3:
-        winnervar.set("Push")
+        winnervar.set("BlackJack! Dealer wins!")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.delete(0, 'end')
+            userinput.grid()
+            #readanswer()
 
 def stand():
 
@@ -389,7 +472,7 @@ def stand():
     dealer_card_2.config(image=imageressecond)
     dealer_card_2.image = imageressecond
 
-    for x in range(1, handsize):
+    for x in range(2, handsize):
         cardvalue = R1.Dealer.hand[x]
         filestringhit = "/Users/emersondetering/Downloads/BlackJackPython/png/" + str(cardvalue) + "_of_clubs.png"
         if cardvalue == 11:
@@ -406,7 +489,7 @@ def stand():
         hitcard = Label(win, image=imagereshit)
         hitcard.image = imagereshit
 
-        shift = 0.05 * (x)
+        shift = 0.05 * (x-1)
 
         poscard1d = (poscard1d - 0.1)
         poscard2d = (poscard2d - 0.1)
@@ -426,6 +509,12 @@ def stand():
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
 
     elif w == 2:
         winnervar.set("Dealer wins")
@@ -433,38 +522,57 @@ def stand():
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
     elif w == 3:
         winnervar.set("Push")
         winner.grid()
         player.grid_remove()
         stand.config(state="disabled")
         hitter.config(state="disabled")
+        deal.config(state="normal")
+        showdealersecond()
+        if diffcounter == threshold:
+            userinput.grid()
+            userinput.delete(0, 'end')
+            #readanswer()
 
-
+global diffcounter
+global threshold
 
  # difficlty functions
 def easy():
     global diffic
+    global threshold
     diffic = "Easy"
     difeasy.config(state="pressed")
     difmedium.config(state="disabled")
     difhard.config(state="disabled")
+    threshold = 4
 
 
 def medium():
     global diffic
+    global threshold
     diffic = "Medium"
     difmedium.config(state="pressed")
     difeasy.config(state="disabled")
     difhard.config(state="disabled")
+    threshold = 6
 
 
 def hard():
     global diffic
+    global threshold
     diffic = "Hard"
     difhard.config(state="pressed")
     difmedium.config(state="disabled")
     difeasy.config(state="disabled")
+    threshold = 8
 
 
 # creating grid
@@ -547,14 +655,19 @@ start.grid(column=1,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
 
 
-#create 
+#create user input for count
+userinput = Entry(win)
+userinput.focus_set()
+userinput.grid(column = 3,row =1)
+userinput.grid_remove()
+
 
 
 
 sel.grid_remove()
 # key bindings
 win.bind('<Escape>', lambda event: quit())
-
+win.bind('<Return>', lambda event: readanswer())
 # Run window
 stscreen.mainloop()
 win.mainloop()
