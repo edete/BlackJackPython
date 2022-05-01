@@ -1,6 +1,6 @@
 import random
-import time
 from tkinter import *
+import tkinter.messagebox
 from tkmacosx import Button
 from tkmacosx import CircleButton  # used to change button colour
 from PIL import ImageTk, Image
@@ -641,6 +641,28 @@ def hard():
     difeasy.config(state="disabled")
     threshold = 8
 
+# How to play message explaining the game
+def HTP():
+    tkinter.messagebox.showinfo('How to Play', 'Welcome!\nHow to Play BlackJack:\nThe cards 2 through 10 are worth '
+                                               'their face value. Kings, queens, and jacks are each worth 10, and aces'
+                                               ' may be used as either 1 or 11. \n\nThe object for the player is to '
+                                               'draw cards totaling closer to 21, without going over, than the dealers '
+                                               'cards. By hitting, the player draws another card, adding value to '
+                                               'their hand. When the player stands, they lock in their hand and the '
+                                               'dealer then hits their hand is higher than than the player, their hand'
+                                               ' value goes over 21, or they reach 17, which means they must stand. '
+                                               '\n\nBasic Card Counting:\n\nCard counting at its fundamentals is a '
+                                               'pretty basic concept. At the start of a game(or shoe of cards) the'
+                                               ' count is 0. Whenever a card lower than 7 is played, the player adds '
+                                               '1 to the count. If a 10 or face card(including Aces) is played, the'
+                                               ' player subtracts 1 from the count. 7,8, and 9 are ignored. Seems easy'
+                                               'right! Wrong. Card counting is very difficult to do at pace and with'
+                                               ' multiple hands. Our game is intended to train you to learn the basics'
+                                               ' and improve your skills!\n\n Easy: You will be asked what the count '
+                                               'is every 4 rounds. \n Medium: You will be asked what the count is'
+                                               ' every 6 rounds. \n Hard: You will be asked what the countis every 8'
+                                               ' rounds.\n\n Good luck!')
+
 
 # Create grid to place all the buttons and card images
 for i in range(0, 4):
@@ -682,6 +704,7 @@ stand = Button(win, text="Stand", command=stand, borderless=1, height=50)
 
 # create start, how to play, and the difficulty for the start window
 start = CircleButton(stscreen, text="Start", command=startgame, borderless=1)
+HTP = Button(stscreen, text="How to Play", command=HTP, borderless=1)
 difeasy = CircleButton(stscreen, text='Easy', command=easy, borderless=1)
 difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
 difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
@@ -725,6 +748,7 @@ difmedium.grid(column=1,row=1)
 difhard.grid(column=2,row=1)
 wlcm.grid(column=0,row=0,columnspan=3)
 start.grid(column=1,row=2)
+HTP.grid(column=2,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
 
 #Create user input for count
