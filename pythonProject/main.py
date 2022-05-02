@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 import ast
 
 ##### ENTER YOUR FILE PATH HERE #####
-path = "/Users/Charlabeast/Documents/BlackJackPython/png/"
+path = "/Users/emersondetering/Downloads/BlackJackPython/png/"
 ################################
 
 #Deck/shoe class
@@ -492,7 +492,7 @@ def readanswer():
                 a=3
                 print('correct')
                 correct=Label(win, text="You are correct", bg='#35654d', font=('Times', 20, 'bold'), fg='White')
-                correct.grid(column=3, row=2)
+                correct.grid(column=3, row=1,sticky='S')
                 userinput.delete(0,'end')
                 deal.config(state="normal")
 
@@ -502,7 +502,7 @@ def readanswer():
                 print('You are incorrect')
                 a=1
                 incorrect=Label(win, text="You are incorrect", bg='#35654d', font=('Times', 20, 'bold'), fg='White')
-                incorrect.grid(column=3, row=2)
+                incorrect.grid(column=3, row=1,sticky='S')
                 userinput.delete(0,'end')
 
 
@@ -512,7 +512,7 @@ def readanswer():
         print('invalid')
         a=2
         invalid=Label(win, text="Please enter an integer", bg='#35654d', font=('Times', 20, 'bold'), fg='White')
-        invalid.grid(column=3, row=2)
+        invalid.grid(column=3, row=1,sticky='S')
         userinput.delete(0,'end')
 
 global diffcounter
@@ -636,7 +636,7 @@ def deal():
 
 # Read dealer images in, resize them appropriately, and display them
     filestring3 = findcard(dealer_hand[0])
-    filestring4 = "/Users/Charlabeast/Documents/BlackJackPython/png/back.png"
+    filestring4 = path + "back.png"
 
     image30 = Image.open(filestring3)  #put your own path here when running
     image40 = Image.open(filestring4)
@@ -1065,7 +1065,7 @@ sel.grid(column=0,row=1,sticky='S',columnspan=3)
 
  #Create user input for count
 userinputLabel = Label(win, text = "Enter Your Card Count", bg = '#35654d', font=('Times', 20, "bold"), fg = 'White')
-userinputLabel.grid(column=3,row=0,columnspan=1)
+userinputLabel.grid(column=3,row=1,columnspan=1,sticky='N')
 userinput = Entry(win)
 userinput.focus_set()
 userinput.grid(column=3,row=1,columnspan=1)
