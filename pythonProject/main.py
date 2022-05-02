@@ -1,4 +1,5 @@
 import random
+import time
 from tkinter import *
 import tkinter.messagebox
 from tkmacosx import Button
@@ -63,6 +64,7 @@ class Round:
             self.S.Cards.pop(0)
             self.Dealer.hand.append(card)
 
+
     #Assigns numeric value to the cards in users and dealers hand
     def value(self, user):
         handvalue = []
@@ -120,7 +122,7 @@ class Round:
             return 1  # Player wins, has Blackjack
         elif self.value("D") == 21:
             return 3  # Dealer has Blackjack
-        elif self.value("D") == self.value("P"):
+        elif self.value("D") == self.value("P") == 21:
             return 4
         else:
             return 0  # No winner yet
@@ -140,6 +142,285 @@ class Round:
                 break
             else:
                 break
+
+
+global one
+global two
+global three
+global four
+global five
+global six
+global seven
+global eight
+global nine
+global ten
+global eleven
+global twelve
+global thirteen
+
+one=[]
+for y in range(1,5):
+    for x in range(1,5):
+        one.append(y)
+random.shuffle(one)
+
+two=[]
+for y in range(1,5):
+    for x in range(1,5):
+        two.append(y)
+random.shuffle(two)
+three=[]
+for y in range(1,5):
+    for x in range(1,5):
+        three.append(y)
+random.shuffle(three)
+four=[]
+for y in range(1,5):
+    for x in range(1,5):
+        four.append(y)
+random.shuffle(four)
+five=[]
+for y in range(1,5):
+    for x in range(1,5):
+        five.append(y)
+random.shuffle(five)
+six=[]
+for y in range(1,5):
+    for x in range(1,5):
+        six.append(y)
+random.shuffle(six)
+seven=[]
+for y in range(1,5):
+    for x in range(1,5):
+        seven.append(y)
+random.shuffle(seven)
+eight=[]
+for y in range(1,5):
+    for x in range(1,5):
+        eight.append(y)
+random.shuffle(eight)
+nine=[]
+for y in range(1,5):
+    for x in range(1,5):
+        nine.append(y)
+random.shuffle(nine)
+ten=[]
+for y in range(1,5):
+    for x in range(1,5):
+        ten.append(y)
+random.shuffle(ten)
+eleven=[]
+for y in range(1,5):
+    for x in range(1,5):
+        eleven.append(y)
+random.shuffle(eleven)
+twelve=[]
+for y in range(1,5):
+    for x in range(1,5):
+        twelve.append(y)
+random.shuffle(twelve)
+thirteen=[]
+for y in range(1,5):
+    for x in range(1,5):
+        thirteen.append(y)
+random.shuffle(thirteen)
+
+def findcard(num):
+    if num == 1:
+        suit = one[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_diamonds.png"
+            return file
+        one.pop(0)
+    elif num == 2:
+        suit = two[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        two.pop(0)
+    elif num == 3:
+        suit = three[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        three.pop(0)
+    elif num == 4:
+        suit = four[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        four.pop(0)
+    elif num == 5:
+        suit = five[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        five.pop(0)
+    elif num == 6:
+        suit = six[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        six.pop(0)
+    elif num == 7:
+        suit = seven[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        seven.pop(0)
+    elif num == 8:
+        suit = eight[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        eight.pop(0)
+    elif num == 9:
+        suit = nine[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        nine.pop(0)
+    elif num == 10:
+        suit = ten[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            return file
+        ten.pop(0)
+    elif num == 11:
+        suit = eleven[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_diamonds.png"
+            return file
+        eleven.pop(0)
+    elif num == 12:
+        suit = twelve[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_diamonds.png"
+            return file
+        twelve.pop(0)
+    elif num == 13:
+        suit = thirteen[0]
+        if suit == 1:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_clubs.png"
+            return file
+        elif suit == 2:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_spades.png"
+            return file
+        elif suit == 3:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_hearts.png"
+            return file
+        else:
+            file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_diamonds.png"
+            return file
+        thirteen.pop(0)
 
 # Import tkinter library
 
@@ -230,16 +511,7 @@ def startgame():
 #Function to reveal the second dealer card
 def showdealersecond():
     secondcardvalue = R1.Dealer.hand[1]
-    filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/" + str(
-        secondcardvalue) + "_of_clubs.png"
-    if secondcardvalue == 11:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    if secondcardvalue == 12:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    if secondcardvalue == 13:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    if secondcardvalue == 1:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    filestringsecond = findcard(secondcardvalue)
     imagesecond = Image.open(filestringsecond)  # put your own path here when running
     resized_imagesecond = imagesecond.resize((110, 160), Image.Resampling.LANCZOS)
     imageressecond = ImageTk.PhotoImage(resized_imagesecond)
@@ -313,27 +585,8 @@ def deal():
     dealer_hand = R1.Dealer.hand
 
 #Assigning appropriate images to card values
-    if hander[0] == 11:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    elif hander[0] == 12:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    elif hander[0] == 13:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    elif hander[0] == 1:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
-    else:
-        filestring1 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[0]) + "_of_clubs.png"
-
-    if hander[1] == 11:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    elif hander[1] == 12:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    elif hander[1] == 13:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    elif hander[1] == 1:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
-    else:
-        filestring2 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(hander[1]) + "_of_clubs.png"
+    filestring1 = findcard(hander[0])
+    filestring2 = findcard(hander[1])
 
 #Read user card images in, resize them appropriately, and display them
     image10 = Image.open(filestring1)  # put your own path here when running
@@ -350,16 +603,8 @@ def deal():
     print(dealer_hand)
 
 # Read dealer images in, resize them appropriately, and display them
-    filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/" + str(dealer_hand[0]) + "_of_clubs.png"
-    filestring4 = "/Users/hussain/Downloads/BlackJackPython/png/back.png"
-    if dealer_hand[0] == 11:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    if dealer_hand[0] == 12:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    if dealer_hand[0] == 13:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    if dealer_hand[0] == 1:
-        filestring3 = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    filestring3 = findcard(dealer_hand[0])
+    filestring4 = "/Users/seanmcmorrow/BlackJackPython/png/back.png"
 
     image30 = Image.open(filestring3)  #put your own path here when running
     image40 = Image.open(filestring4)
@@ -429,15 +674,7 @@ def hit():
     R1.hit("P")
     cardvalue = hander[counter]
     #Assign appropriate card images for the card values
-    filestringhit= "/Users/hussain/Downloads/BlackJackPython/png/" + str(cardvalue) + "_of_clubs.png"
-    if cardvalue == 11:
-        filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    if cardvalue == 12:
-        filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    if cardvalue == 13:
-        filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    if cardvalue == 1:
-        filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    filestringhit= findcard(cardvalue)
 
 #Display card images for the user
     imagehit = Image.open(filestringhit)  # put your own path here when running
@@ -515,15 +752,7 @@ def stand():
 
 #Assign card value and image for the dealers second card
     secondcardvalue = R1.Dealer.hand[1]
-    filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/" + str(secondcardvalue) + "_of_clubs.png"
-    if secondcardvalue == 11:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-    if secondcardvalue == 12:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-    if secondcardvalue == 13:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-    if secondcardvalue == 1:
-        filestringsecond = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+    filestringsecond = findcard(secondcardvalue)
 #Resize and display dealers second card
     imagesecond = Image.open(filestringsecond)  # put your own path here when running
     resized_imagesecond = imagesecond.resize((110, 160), Image.Resampling.LANCZOS)
@@ -534,15 +763,7 @@ def stand():
 #Adding cards if dealer hits
     for x in range(2, handsize):
         cardvalue = R1.Dealer.hand[x]
-        filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/" + str(cardvalue) + "_of_clubs.png"
-        if cardvalue == 11:
-            filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/jack_of_clubs.png"
-        if cardvalue == 12:
-            filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/queen_of_clubs.png"
-        if cardvalue == 13:
-            filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/king_of_clubs.png"
-        if cardvalue == 1:
-            filestringhit = "/Users/hussain/Downloads/BlackJackPython/png/ace_of_clubs.png"
+        filestringhit = findcard(cardvalue)
         imagehit = Image.open(filestringhit)  # put your own path here when running
         resized_imagehit = imagehit.resize((110, 160), Image.Resampling.LANCZOS)
         imagereshit = ImageTk.PhotoImage(resized_imagehit)
@@ -660,7 +881,7 @@ def HTP():
                                                ' multiple hands. Our game is intended to train you to learn the basics'
                                                ' and improve your skills!\n\n Easy: You will be asked what the count '
                                                'is every 4 rounds. \n Medium: You will be asked what the count is'
-                                               ' every 6 rounds. \n Hard: You will be asked what the countis every 8'
+                                               ' every 6 rounds. \n Hard: You will be asked what the count is every 8'
                                                ' rounds.\n\n Good luck!')
 
 
@@ -677,10 +898,10 @@ win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 
 # Read in and resize back of card images for initial main window
-image1 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")  # put your own path here when running
-image2 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
-image3 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
-image4 = Image.open("/Users/hussain/Downloads/BlackJackPython/png/back.png")
+image1 = Image.open("/Users/seanmcmorrow/BlackJackPython/png/back.png")  # put your own path here when running
+image2 = Image.open("/Users/seanmcmorrow/BlackJackPython/png/back.png")
+image3 = Image.open("/Users/seanmcmorrow/BlackJackPython/png/back.png")
+image4 = Image.open("/Users/seanmcmorrow/BlackJackPython/png/back.png")
 resized_image1 = image1.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image2 = image2.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image3 = image1.resize((110, 160), Image.Resampling.LANCZOS)
@@ -697,10 +918,10 @@ dealer_card_1 = Label(win, image=imageres3)
 dealer_card_2 = Label(win, image=imageres4)
 
 # Create exit, deal, hit, and stand buttons for the main window
-exit = CircleButton(win, text="Exit", command=quit, borderless=1)
-deal = Button(win, text="Deal", command=deal, borderless=1, height=50)
-hitter = Button(win, text="Hit", command=hit, borderless=1, height=50)
-stand = Button(win, text="Stand", command=stand, borderless=1, height=50)
+exit = CircleButton(win, text="Exit", font=("bold"),command=quit, borderless=1)
+deal = Button(win, text="Deal", command=deal, font=('Times',20,"bold"), borderless=1, height=50)
+hitter = Button(win, text="Hit", font=('Times',20,"bold"), command=hit, borderless=1, height=50)
+stand = Button(win, text="Stand", font=('Times',20,"bold"), command=stand, borderless=1, height=50)
 
 # create start, how to play, and the difficulty for the start window
 start = CircleButton(stscreen, text="Start", command=startgame, borderless=1)
@@ -722,22 +943,23 @@ winner = Label(win, textvariable = winnervar, bg='#35654d', font=('Times', 60, "
 
 
 #Create labels for the start window
-wlcm = Label(stscreen, text="Blackjack Card Counting Trainer", bg='#35654d', font=('Times', 24, "bold"), fg='White')
+wlcm = Label(stscreen, text="Blackjack Card Counting Trainer", bg='#35654d', font=('Symbol', 24, "bold"), fg='White')
 sel = Label(stscreen, text="Select a difficulty", bg='#35654d', font=('Times', 10, "bold"), fg='#000000')
 
 #Place buttons, labels and cards on the main window
 exit.grid(column=0, row=0, sticky='NW')
-deal.grid(column=3, row=0, sticky='NE')
-stand.grid(column=2, row=3)
+deal.grid(column=1, row=3 , columnspan = 4)
+stand.grid(column=0, row=3, columnspan = 4)
 card_1.place(relx=poscard1,rely=0.6)
 card_2.place(relx=poscard2,rely=0.6)
-hitter.grid(column=1, row=3)
+hitter.grid(column=1, row=3 , sticky = 'W')
 counting.grid(column=0,row=1,columnspan=2)
+
 
 dealer_card_1.place(relx=poscard1d,rely=0.15)
 dealer_card_2.place(relx=poscard2d,rely=0.15)
-player.grid(column=1,row = 1,columnspan= 2)
-dealer.grid(column=1,row = 0,columnspan= 2,sticky='N')
+player.grid(column= 0,row = 1,columnspan= 4)
+dealer.grid(column=0,row = 0,columnspan= 4,sticky='N')
 winner.grid(column=1,row = 1,columnspan= 2)
 countlab.grid(column=0, row=1, columnspan=1)
 winner.grid_remove()
