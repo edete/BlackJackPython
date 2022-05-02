@@ -985,10 +985,10 @@ win.columnconfigure(1, weight=1)
 win.columnconfigure(2, weight=1)
 
 # Read in and resize back of card images for initial main window
-image1 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")  # put your own path here when running
-image2 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
-image3 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
-image4 = Image.open("/Users/Charlabeast/Documents/BlackJackPython/png/back.png")
+image1 = Image.open(path + "back.png")  # put your own path here when running
+image2 = Image.open(path + "back.png")
+image3 = Image.open(path + "back.png")
+image4 = Image.open(path + "back.png")
 resized_image1 = image1.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image2 = image2.resize((110, 160), Image.Resampling.LANCZOS)
 resized_image3 = image1.resize((110, 160), Image.Resampling.LANCZOS)
