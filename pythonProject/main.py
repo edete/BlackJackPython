@@ -7,7 +7,7 @@ from tkmacosx import CircleButton  # used to change button colour
 from PIL import ImageTk, Image
 import ast
 
-#Deck class
+#Deck/shoe class
 class Shoe:
     def __init__(self):
         self.Cards = []
@@ -49,17 +49,17 @@ class Round:
     def hit(self, user):
         if user == "P":
             card = self.S.Cards[0]
-            if card >= 10:
+            if card >= 10 or card == 1:
                 self.count -= 1
-            elif card < 7:
+            elif 1 < card < 7:
                 self.count += 1
             self.S.Cards.pop(0)
             self.Player.hand.append(card)
         elif user == "D":
             card = self.S.Cards[0]
-            if card >= 10:
+            if card >= 10 or card == 1:
                 self.count -= 1
-            elif card < 7:
+            elif 1 < card < 7:
                 self.count += 1
             self.S.Cards.pop(0)
             self.Dealer.hand.append(card)
@@ -132,10 +132,10 @@ class Round:
         while self.value("D") <= 21:
             if self.value("D") <= self.value("P") and self.value("D") < 17:
                 card = self.S.Cards[0]
-                if 1 < card < 7:
-                    self.count += 1
-                elif card >= 10 or card == 1:
+                if card >= 10 or card == 1:
                     self.count -= 1
+                elif 1 < card < 7:
+                    self.count += 1
                 self.Dealer.hand.append(card)
                 self.S.Cards.pop(0)
             elif self.value("D") >= 17:
@@ -228,6 +228,7 @@ random.shuffle(thirteen)
 def findcard(num):
     if num == 1:
         suit = one[0]
+        one.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_clubs.png"
             return file
@@ -240,9 +241,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/ace_of_diamonds.png"
             return file
-        one.pop(0)
+
     elif num == 2:
         suit = two[0]
+        two.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -255,9 +257,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        two.pop(0)
+
     elif num == 3:
         suit = three[0]
+        three.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -270,9 +273,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        three.pop(0)
+
     elif num == 4:
         suit = four[0]
+        four.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -285,9 +289,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        four.pop(0)
+
     elif num == 5:
         suit = five[0]
+        five.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -300,9 +305,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        five.pop(0)
+
     elif num == 6:
         suit = six[0]
+        six.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -315,9 +321,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        six.pop(0)
+
     elif num == 7:
         suit = seven[0]
+        seven.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -330,9 +337,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        seven.pop(0)
+
     elif num == 8:
         suit = eight[0]
+        eight.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -345,9 +353,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        eight.pop(0)
+
     elif num == 9:
         suit = nine[0]
+        nine.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -360,9 +369,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        nine.pop(0)
+
     elif num == 10:
         suit = ten[0]
+        ten.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_clubs.png"
             return file
@@ -375,9 +385,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
             return file
-        ten.pop(0)
+
     elif num == 11:
         suit = eleven[0]
+        eleven.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_clubs.png"
             return file
@@ -390,9 +401,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/jack_of_diamonds.png"
             return file
-        eleven.pop(0)
+
     elif num == 12:
         suit = twelve[0]
+        twelve.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_clubs.png"
             return file
@@ -405,9 +417,10 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/queen_of_diamonds.png"
             return file
-        twelve.pop(0)
+
     elif num == 13:
         suit = thirteen[0]
+        thirteen.pop(0)
         if suit == 1:
             file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_clubs.png"
             return file
@@ -420,7 +433,7 @@ def findcard(num):
         else:
             file = "/Users/seanmcmorrow/BlackJackPython/png/king_of_diamonds.png"
             return file
-        thirteen.pop(0)
+
 
 # Import tkinter library
 
@@ -453,29 +466,32 @@ a=0
 
 #read card counter answer from user
 def readanswer():
+    print(R1.count)
     global correct
     global incorrect
     global invalid
     global a
     answer = userinput.get()
+    deal.config(state="disabled")
+    if a == 2:
+        invalid.destroy()
+    elif a == 1:
+        incorrect.destroy()
 
 
     if answer.lstrip('-').isnumeric(): #This is so that if input is negative it works
-        if a == 2:
-            invalid.destroy()
-        elif a == 1:
-            incorrect.destroy()
 
-        if int(answer.lstrip('-')) == R1.count:
+        if int(answer) == R1.count:
                 #Display if the users card count is correct
                 a=3
                 print('correct')
                 correct=Label(win, text="You are correct", bg='#35654d', font=('Times', 20, 'bold'), fg='White')
                 correct.grid(column=3, row=2)
                 userinput.delete(0,'end')
+                deal.config(state="normal")
 
 
-        elif int(answer.lstrip('-')) != R1.count:
+        elif int(answer) != R1.count:
                 # Display if the users card count is incorrect
                 print('You are incorrect')
                 a=1
@@ -493,12 +509,11 @@ def readanswer():
         invalid.grid(column=3, row=2)
         userinput.delete(0,'end')
 
-
+global diffcounter
+diffcounter = 0
 
 # establish commands
 def startgame():
-    global diffcounter
-    diffcounter = 0
     #If the difficulty hasn't been selected, don't start the game
     if diffic != None:
         diffcounter = 0
@@ -522,6 +537,8 @@ def showdealersecond():
 global R1
 R1 = Round()
 R1.shuffle()
+time.sleep(1)
+R1.shuffle()
 diffic = None
 
 #Exit function
@@ -541,6 +558,7 @@ def deal():
     global card_2
     global counter
     global diffcounter
+
     diffcounter = diffcounter + 1
     stand.config(state = "normal")
     hitter.config(state = "normal")
@@ -557,7 +575,11 @@ def deal():
         j.destroy()
 
 #Resets correct message
-    if a==3:
+    if a == 2:
+        invalid.destroy()
+    elif a == 1:
+        incorrect.destroy()
+    elif a == 3:
         correct.destroy()
 
 #Resets cards
@@ -630,8 +652,10 @@ def deal():
         deal.config(state ="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
     elif w == 3:
         winnervar.set("Blackjack! Dealer wins!")
@@ -642,8 +666,10 @@ def deal():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
     elif w == 4:
         winnervar.set("You both have Blackjack! Push!")
@@ -654,8 +680,10 @@ def deal():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
 
 global cardlist
@@ -666,10 +694,11 @@ dealercardlist = []
 
 #Hit function
 def hit():
-
+    global diffcounter
     global counter
     global poscard1
     global poscard2
+    global hander
     #User hit
     R1.hit("P")
     cardvalue = hander[counter]
@@ -712,8 +741,10 @@ def hit():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
-            userinput.delete(0, 'end')
+            deal.config(state="disabled")
             userinput.grid()
+            userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
     if w == 2:
         #Dealer wins
@@ -725,8 +756,10 @@ def hit():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.delete(0, 'end')
             userinput.grid()
+            diffcounter = 0
             #readanswer()
     elif w == 3:
         #Dealer gets blackjack and wins
@@ -738,15 +771,18 @@ def hit():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.delete(0, 'end')
             userinput.grid()
+            diffcounter = 0
             #readanswer()
 
 #Stand function for when user wants to keep the cards they have
 def stand():
-
+    global diffcounter
     global poscard2d
     global poscard1d
+    R1.shuffle()
     R1.playerstand()
     handsize = len(R1.Dealer.hand)
 
@@ -783,7 +819,10 @@ def stand():
             for j in range(0, len(dealercardlist)):
                 dealercardlist[j].place(rely=0.15, relx=((poscard2d + 0.1) + (j * 0.1) + shift))
         dealercardlist.append(hitcard)
+
+    cardcount.set(R1.count)
 #Winning outcomes
+
     w = R1.win()
     #User wins
     if w == 1:
@@ -797,8 +836,10 @@ def stand():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
     #Dealer wins
     elif w == 2:
@@ -811,8 +852,10 @@ def stand():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
     #Push (i.e. a tie), no one wins
     elif w == 3:
@@ -824,19 +867,31 @@ def stand():
         deal.config(state="normal")
         showdealersecond()
         if diffcounter == threshold:
+            deal.config(state="disabled")
             userinput.grid()
             userinput.delete(0, 'end')
+            diffcounter = 0
             #readanswer()
 
-global diffcounter
 global threshold
 
 #Difficlty Functions
 #Easy Difficulty, asks for card count every 4 rounds
+def free():
+    global diffic
+    global threshold
+    diffic = "Free"
+    diffree.config(state="pressed")
+    difeasy.config(state="disabled")
+    difmedium.config(state="disabled")
+    difhard.config(state="disabled")
+    threshold = 9999999
 def easy():
     global diffic
     global threshold
     diffic = "Easy"
+    countlab.grid_forget()
+    counting.grid_forget()
     difeasy.config(state="pressed")
     difmedium.config(state="disabled")
     difhard.config(state="disabled")
@@ -847,6 +902,8 @@ def medium():
     global diffic
     global threshold
     diffic = "Medium"
+    countlab.grid_forget()
+    counting.grid_forget()
     difmedium.config(state="pressed")
     difeasy.config(state="disabled")
     difhard.config(state="disabled")
@@ -857,6 +914,8 @@ def hard():
     global diffic
     global threshold
     diffic = "Hard"
+    countlab.grid_forget()
+    counting.grid_forget()
     difhard.config(state="pressed")
     difmedium.config(state="disabled")
     difeasy.config(state="disabled")
@@ -882,7 +941,7 @@ def HTP():
                                                ' and improve your skills!\n\n Easy: You will be asked what the count '
                                                'is every 4 rounds. \n Medium: You will be asked what the count is'
                                                ' every 6 rounds. \n Hard: You will be asked what the count is every 8'
-                                               ' rounds.\n\n Good luck!')
+                                               ' rounds.\n Free Play: We will show you the count. No \n\n Good luck!')
 
 
 # Create grid to place all the buttons and card images
@@ -926,6 +985,7 @@ stand = Button(win, text="Stand", font=('Times',20,"bold"), command=stand, borde
 # create start, how to play, and the difficulty for the start window
 start = CircleButton(stscreen, text="Start", command=startgame, borderless=1)
 HTP = Button(stscreen, text="How to Play", command=HTP, borderless=1)
+diffree = CircleButton(stscreen,text='Free Play', command=free,borderless=1)
 difeasy = CircleButton(stscreen, text='Easy', command=easy, borderless=1)
 difmedium = CircleButton(stscreen, text='Medium', command=medium, borderless=1)
 difhard = CircleButton(stscreen, text='Hard', command=hard, borderless=1)
@@ -943,7 +1003,7 @@ winner = Label(win, textvariable = winnervar, bg='#35654d', font=('Times', 60, "
 
 
 #Create labels for the start window
-wlcm = Label(stscreen, text="Blackjack Card Counting Trainer", bg='#35654d', font=('Symbol', 24, "bold"), fg='White')
+wlcm = Label(stscreen, text="Blackjack Card Counting Practice", bg='#35654d', font=('Verdana', 24, "bold"), fg='White')
 sel = Label(stscreen, text="Select a difficulty", bg='#35654d', font=('Times', 10, "bold"), fg='#000000')
 
 #Place buttons, labels and cards on the main window
@@ -958,13 +1018,14 @@ counting.grid(column=0,row=1,columnspan=2)
 
 dealer_card_1.place(relx=poscard1d,rely=0.15)
 dealer_card_2.place(relx=poscard2d,rely=0.15)
-player.grid(column= 0,row = 1,columnspan= 4)
-dealer.grid(column=0,row = 0,columnspan= 4,sticky='N')
-winner.grid(column=1,row = 1,columnspan= 2)
+player.grid(column= 0,row = 2,columnspan= 4 , sticky = 'N')
+dealer.grid(column=0,row = 0,columnspan= 4, sticky = 'N')
+winner.grid(column=0,row = 1,columnspan= 4)
 countlab.grid(column=0, row=1, columnspan=1)
 winner.grid_remove()
 
 #place buttons and labels on the start screen
+diffree.grid(column=0,row=2)
 difeasy.grid(column=0,row=1)
 difmedium.grid(column=1,row=1)
 difhard.grid(column=2,row=1)
@@ -973,7 +1034,8 @@ start.grid(column=1,row=2)
 HTP.grid(column=2,row=2)
 sel.grid(column=0,row=1,sticky='S',columnspan=3)
 
-#Create user input for count
+
+ #Create user input for count
 userinputLabel = Label(win, text = "Enter Your Card Count", bg = '#35654d', font=('Times', 20, "bold"), fg = 'White')
 userinputLabel.grid(column=3,row=0,columnspan=1)
 userinput = Entry(win)
