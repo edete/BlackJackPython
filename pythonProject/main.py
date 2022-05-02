@@ -7,6 +7,10 @@ from tkmacosx import CircleButton  # used to change button colour
 from PIL import ImageTk, Image
 import ast
 
+##### ENTER YOUR FILE PATH HERE #####
+path = "/Users/Charlabeast/Documents/BlackJackPython/png/"
+################################
+
 #Deck/shoe class
 class Shoe:
     def __init__(self):
@@ -230,208 +234,208 @@ def findcard(num):
         suit = one[0]
         one.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_clubs.png"
+            file = path + "ace_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_spades.png"
+            file = path + "ace_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_hearts.png"
+            file = path + "ace_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/ace_of_diamonds.png"
+            file = path + "ace_of_diamonds.png"
             return file
 
     elif num == 2:
         suit = two[0]
         two.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 3:
         suit = three[0]
         three.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 4:
         suit = four[0]
         four.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 5:
         suit = five[0]
         five.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 6:
         suit = six[0]
         six.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 7:
         suit = seven[0]
         seven.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 8:
         suit = eight[0]
         eight.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 9:
         suit = nine[0]
         nine.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 10:
         suit = ten[0]
         ten.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_clubs.png"
+            file = path + str(num) + "_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_spades.png"
+            file = path + str(num) + "_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_hearts.png"
+            file = path + str(num) + "_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/" + str(num) + "_of_diamonds.png"
+            file = path + str(num) + "_of_diamonds.png"
             return file
 
     elif num == 11:
         suit = eleven[0]
         eleven.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_clubs.png"
+            file = path + "jack_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_spades.png"
+            file = path + "jack_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_hearts.png"
+            file = path + "jack_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/jack_of_diamonds.png"
+            file = path + "jack_of_diamonds.png"
             return file
 
     elif num == 12:
         suit = twelve[0]
         twelve.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_clubs.png"
+            file = path + "queen_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_spades.png"
+            file = path + "queen_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_hearts.png"
+            file = path + "queen_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/queen_of_diamonds.png"
+            file = path + "queen_of_diamonds.png"
             return file
 
     elif num == 13:
         suit = thirteen[0]
         thirteen.pop(0)
         if suit == 1:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_clubs.png"
+            file = path + "king_of_clubs.png"
             return file
         elif suit == 2:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_spades.png"
+            file = path + "king_of_spades.png"
             return file
         elif suit == 3:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_hearts.png"
+            file = path + "king_of_hearts.png"
             return file
         else:
-            file = "/Users/Charlabeast/Documents/BlackJackPython/png/king_of_diamonds.png"
+            file = path + "king_of_diamonds.png"
             return file
 
 
