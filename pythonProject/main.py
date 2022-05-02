@@ -969,7 +969,7 @@ def HTP():
                                                ' and improve your skills!\n\n Easy: You will be asked what the count '
                                                'is every 4 rounds. \n Medium: You will be asked what the count is'
                                                ' every 6 rounds. \n Hard: You will be asked what the count is every 8'
-                                               ' rounds.\n Free Play: We will show you the count. No \n\n Good luck!')
+                                               ' rounds.\n Free Play: We will show you the count. \n\n Good luck!')
 
 
 # Create grid to place all the buttons and card images
